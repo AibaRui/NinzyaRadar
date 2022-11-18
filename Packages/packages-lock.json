@@ -89,8 +89,6 @@
       },
       "url": "https://packages.unity.com"
     },
-<<<<<<< HEAD
-=======
     "com.unity.progrids": {
       "version": "3.0.3-preview.6",
       "depth": 0,
@@ -100,7 +98,6 @@
       },
       "url": "https://packages.unity.com"
     },
->>>>>>> 1f327d48a4107a47e2ab907dd59d003776055fa2
     "com.unity.services.core": {
       "version": "1.0.1",
       "depth": 1,
