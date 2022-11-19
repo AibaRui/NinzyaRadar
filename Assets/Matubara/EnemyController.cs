@@ -6,9 +6,12 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] Transform[] _waypoints = default;
+    [SerializeField, Header("巡回地点のtransformを登録する")] Transform[] _waypoints = default;
+    [SerializeField, Header("Rayの始点")] Transform _rayStartpoint = default;
+    [SerializeField, Header("Rayの長さ")] float _maxDistance;
     NavMeshAgent _navMeshAgent = default;
-    int _currentWaypointIndex;
+    int _currentWaypointIndex = 0;
+    Vector3 _raycastHitPosition;
     void Start()
     {
         _navMeshAgent= GetComponent<NavMeshAgent>();
@@ -21,9 +24,25 @@ public class EnemyController : MonoBehaviour
             _currentWaypointIndex = (_currentWaypointIndex + 1) % _waypoints.Length;
             _navMeshAgent.SetDestination(_waypoints[_currentWaypointIndex].position);
         }
+        SearchingforPlayer();
     }
 
     void SearchingforPlayer()
+    {
+        Ray ray = new Ray(_rayStartpoint.position, transform.forward);
+        _raycastHitPosition = _rayStartpoint.position + transform.forward * _maxDistance;
+        
+        if (Physics.Raycast(ray, out RaycastHit hit, _maxDistance) && hit.collider.CompareTag("Player"))
+        {
+            _raycastHitPosition = hit.point;
+            Debug.Log("RayがPlayerにヒットしました");
+            fire();
+        }
+
+        Debug.DrawLine(ray.origin, _raycastHitPosition, Color.red);
+    }
+
+    void fire()
     {
 
     }
