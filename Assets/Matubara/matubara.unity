@@ -1051,6 +1051,10 @@ MonoBehaviour:
   - {fileID: 41425514}
   _rayStartpoint: {fileID: 1990546971}
   _maxDistance: 10
+  _bulletPurefab: {fileID: 1070890024320273853, guid: 9cec7fcc199b1f2479a3c54601dd8bd5, type: 3}
+  _muzzle: {fileID: 1691804008}
+  _forcepower: 1
+  _hp: 0
 --- !u!1001 &1129536880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1208,7 +1212,7 @@ GameObject:
   - component: {fileID: 1190247242}
   - component: {fileID: 1190247241}
   m_Layer: 0
-  m_Name: Player
+  m_Name: TMPPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1554,6 +1558,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619621161}
   m_CullTransparentMesh: 1
+--- !u!1 &1691804007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1691804008}
+  m_Layer: 0
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1691804008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691804007}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1757410953}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1713465022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,7 +1681,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0.658}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1691804008}
   m_Father: {fileID: 809376328}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 87.716, y: 0, z: 0}
@@ -1720,7 +1756,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1312
+  m_Name: pb_Mesh-1256
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1890,7 +1926,7 @@ GameObject:
   m_Layer: 0
   m_Name: RayStartPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1902,7 +1938,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990546970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.033, y: 0.591, z: 0}
+  m_LocalPosition: {x: -0.033, y: 0.253, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

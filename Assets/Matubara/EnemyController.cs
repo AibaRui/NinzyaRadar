@@ -9,6 +9,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField, Header("巡回地点のtransformを登録する")] Transform[] _waypoints = default;
     [SerializeField, Header("Rayの始点")] Transform _rayStartpoint = default;
     [SerializeField, Header("Rayの長さ")] float _maxDistance;
+    [SerializeField, Header("Bulletのプレハブ")] GameObject _bulletPurefab;
+    [SerializeField, Header("弾を発射する地点")] Transform _muzzle;
+    [SerializeField, Header("弾丸の速度")] float _forcepower;
+    [SerializeField, Header("EnemyのHP")] int _hp = 2;
+    bool _isP = false;
+    float _saveSpeed;
     NavMeshAgent _navMeshAgent = default;
     int _currentWaypointIndex = 0;
     Vector3 _raycastHitPosition;
@@ -16,14 +22,10 @@ public class EnemyController : MonoBehaviour
     {
         _navMeshAgent= GetComponent<NavMeshAgent>();
         _navMeshAgent.SetDestination(_waypoints[0].position);
+        _saveSpeed = _navMeshAgent.speed;
     }
     void Update()
     {
-        if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
-        {
-            _currentWaypointIndex = (_currentWaypointIndex + 1) % _waypoints.Length;
-            _navMeshAgent.SetDestination(_waypoints[_currentWaypointIndex].position);
-        }
         SearchingforPlayer();
     }
 
@@ -31,19 +33,46 @@ public class EnemyController : MonoBehaviour
     {
         Ray ray = new Ray(_rayStartpoint.position, transform.forward);
         _raycastHitPosition = _rayStartpoint.position + transform.forward * _maxDistance;
-        
+
         if (Physics.Raycast(ray, out RaycastHit hit, _maxDistance) && hit.collider.CompareTag("Player"))
         {
-            _raycastHitPosition = hit.point;
-            Debug.Log("RayがPlayerにヒットしました");
-            fire();
+            _isP = true;
+        }
+        else
+        {
+            _isP = false;
         }
 
-        Debug.DrawLine(ray.origin, _raycastHitPosition, Color.red);
+        if (_isP)
+        {
+            _navMeshAgent.speed = 0;
+            _raycastHitPosition = hit.point;
+            Debug.Log("RayがPlayerにヒットしました");
+            Fire();
+        }
+        else
+        {
+            _navMeshAgent.speed = _saveSpeed;
+            if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+            {
+                _currentWaypointIndex = (_currentWaypointIndex + 1) % _waypoints.Length;
+                _navMeshAgent.SetDestination(_waypoints[_currentWaypointIndex].position);
+            }
+        }
+
+        Debug.DrawLine(_rayStartpoint.position, _raycastHitPosition, Color.red);
     }
 
-    void fire()
+    void Fire()
     {
-
+        GameObject go = Instantiate(_bulletPurefab, _muzzle.position, transform.rotation);
+        go.GetComponent<Rigidbody>().AddForce(this.transform.forward * _forcepower, ForceMode.VelocityChange);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (CompareTag("") || CompareTag(""))
+        {
+            _hp -= 1;
+        }
     }
 }
