@@ -15,19 +15,27 @@ public class P_Control : MonoBehaviour
     [SerializeField] float _isGroundedLength = 1.1f;
 
 
+    [Header("地上での速度制限")]
+    [Tooltip("地上での速度制限")] [SerializeField] float _groundMove = 12;
 
-    [SerializeField] float _groundMove = 12;
-    [SerializeField] float _slidingMove;
-    [SerializeField] float _airMove;
-    [SerializeField] float _jumpMove;
-    [SerializeField] float _gravity = 3;
+    [Header("スライディングの速度制限")]
+    [Tooltip("スライディングの速度制限")] [SerializeField] float _slidingMove;
+
+    [Header("空中での速度制限")]
+    [Tooltip("空中での速度制限")] [SerializeField] float _airMove;
+
+    [Header("ジャンプ時の速度制限")]
+    [Tooltip("ジャンプ時の速度制限")] [SerializeField] float _jumpMove;
+
+    [Header("重力")]
+    [Tooltip("重力")] [SerializeField] float _gravity = 3;
 
     public bool _isWapon = false;
 
 
     public bool _isSliding;
 
-    public bool _isAvirity =false;
+    public bool _isAvirity = false;
 
     public bool _isSquat;
     public bool _isGround;
@@ -49,7 +57,6 @@ public class P_Control : MonoBehaviour
     {
         Check();
         SpeedLimit();
-        //T();
 
         _isGround = IsGrounded();
     }
@@ -60,19 +67,7 @@ public class P_Control : MonoBehaviour
     }
 
 
-    //void T()
-    //{
-    //    _xSpeed.text = m_rb.velocity.x.ToString("00.0");
-    //    _xSpeedLimit.text = _limitSpeedX.ToString();
-
-    //    _zSpeed.text = m_rb.velocity.x.ToString("00.0");
-    //    _zSpeedLimit.text = _limitSpeedZ.ToString();
-
-    //    _Action.text = playerAction.ToString();
-    //}
-
-
-
+    /// <summary>速度制限</summary>
     void SpeedLimit()
     {
 
@@ -98,7 +93,7 @@ public class P_Control : MonoBehaviour
 
 
     void Check()
-    {    
+    {
         if (_isSliding)
         {
             playerAction = PlayerAction.Sliding;
@@ -116,7 +111,7 @@ public class P_Control : MonoBehaviour
         //    _limitSpeedZ = _jumpMove;
         //    return;
         //}
-        
+
 
         if (_isGround)
         {
@@ -139,6 +134,8 @@ public class P_Control : MonoBehaviour
 
     }
 
+    /// <summary>設置判定</summary>
+    /// <returns></returns>
     public bool IsGrounded()
     {
         //  Debug.Log("kk");

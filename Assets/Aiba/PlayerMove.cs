@@ -36,6 +36,7 @@ public class PlayerMove : MonoBehaviour
     /// <summary>キャラクターの Animator</summary>
     [SerializeField] Animator _anim;
     [SerializeField] Animator _animKatana;
+    [SerializeField] Animator _animSyuriken;
 
     //  [SerializeField] AudioSource m_aud;
     Animator m_anim;
@@ -73,6 +74,13 @@ public class PlayerMove : MonoBehaviour
         MoveAir(_airVelo);
     }
 
+    private void LateUpdate()
+    {
+        _animKatana.SetBool("Jump",!_control.IsGrounded());
+        _animSyuriken.SetBool("Jump", !_control.IsGrounded());
+    }
+
+
     void Dir()
     {
         Vector3 dir = Camera.main.transform.forward;
@@ -102,10 +110,13 @@ public class PlayerMove : MonoBehaviour
             _rb.velocity = new Vector3(0f, _rb.velocity.y, 0f);
             //_airVelo = Vector3.zero;
             _animKatana.SetBool("Move", false);
+            _animSyuriken.SetBool("Move", false);
         }
         else
         {
             _animKatana.SetBool("Move", true);
+            _animSyuriken.SetBool("Move", true);
+
             // カメラを基準に入力が上下=奥/手前, 左右=左右にキャラクターを向ける
             dir = Camera.main.transform.TransformDirection(dir);    // メインカメラを基準に入力方向のベクトルを変換する
             dir.y = 0;  // y 軸方向はゼロにして水平方向のベクトルにする
@@ -169,8 +180,8 @@ public class PlayerMove : MonoBehaviour
                 _control._isSliding = false;
                 _control._isJump = true;
                 _rb.velocity = new Vector3(_rb.velocity.x, _jumpPower, _rb.velocity.z);
-
-                _animKatana.Play("KatanaJumpStart");
+                _animKatana.Play("JumpStart");
+                _animSyuriken.Play("SyurikenJumpStart");
             }
         }
     }
