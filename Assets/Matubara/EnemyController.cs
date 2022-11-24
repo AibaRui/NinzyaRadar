@@ -36,7 +36,7 @@ public class EnemyController : MonoBehaviour
         if (Physics.Raycast(sightray, out RaycastHit hit, _maxDistance) && hit.collider.CompareTag("Player") || Physics.Raycast(sightray2, out hit, _maxDistance) && hit.collider.CompareTag("Player"))
         {
             _raycastHitPosition = hit.point;
-            // gameObject.transform.forward = hit.point - transform.position;
+            gameObject.transform.forward = hit.point - transform.position;
             sighting(true);
         }
         else
@@ -54,6 +54,8 @@ public class EnemyController : MonoBehaviour
 
         if (b)
         {
+            Transform playerpos = GameObject.FindGameObjectWithTag("Player").transform;
+            transform.forward = playerpos.position - transform.position;
             meshRenderer.material.color = Color.red;
             _navMeshAgent.speed = 0;
             Shoot();
@@ -76,13 +78,13 @@ public class EnemyController : MonoBehaviour
         if (_timer > _firerate)
         {
             GameObject go = Instantiate(_bulletPurefab, _muzzle.position, transform.rotation);
-            go.GetComponent<Rigidbody>().AddForce(this.transform.forward * _forcepower, ForceMode.VelocityChange);
+            go.GetComponent<Rigidbody>().AddForce(this.transform.forward * _forcepower, ForceMode.Impulse);
             _timer = 0;
         }
     }
-    void hit()
+    void Hit(Collider c)
     {
-        if (CompareTag("") || CompareTag(""))
+        if (c.CompareTag("") || c.CompareTag(""))
         {
             _hp -= 1;
         }
@@ -94,6 +96,6 @@ public class EnemyController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        hit();
+        Hit(other);
     }
 }
