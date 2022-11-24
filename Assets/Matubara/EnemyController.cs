@@ -28,26 +28,27 @@ public class EnemyController : MonoBehaviour
     }
     void Update()
     {
-        Ray ray = new Ray(_rayStartpoints[0].position, transform.forward);
-        Ray ray2 = new Ray(_rayStartpoints[1].position, transform.forward);
+        Ray sightray = new Ray(_rayStartpoints[0].position, transform.forward);
+        Ray sightray2 = new Ray(_rayStartpoints[1].position, transform.forward);
 
         _raycastHitPosition = _rayStartpoints[0].position + transform.forward * _maxDistance;
 
-        if (Physics.Raycast(ray, out RaycastHit hit, _maxDistance) && hit.collider.CompareTag("Player") || Physics.Raycast(ray2, out hit, _maxDistance) && hit.collider.CompareTag("Player"))
+        if (Physics.Raycast(sightray, out RaycastHit hit, _maxDistance) && hit.collider.CompareTag("Player") || Physics.Raycast(sightray2, out hit, _maxDistance) && hit.collider.CompareTag("Player"))
         {
             _raycastHitPosition = hit.point;
-            SearchingforPlayer(true);
+            // gameObject.transform.forward = hit.point - transform.position;
+            sighting(true);
         }
         else
         {
-            SearchingforPlayer(false);
+            sighting(false);
         }
 
         Debug.DrawLine(_rayStartpoints[0].position, _raycastHitPosition, Color.red);
         Debug.DrawLine(_rayStartpoints[1].position, _raycastHitPosition, Color.red);
     }
 
-    void SearchingforPlayer(bool b)
+    void sighting(bool b)
     {
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
 
@@ -79,11 +80,20 @@ public class EnemyController : MonoBehaviour
             _timer = 0;
         }
     }
-    private void OnTriggerEnter(Collider other)
+    void hit()
     {
         if (CompareTag("") || CompareTag(""))
         {
             _hp -= 1;
         }
+
+        if (_hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        hit();
     }
 }
