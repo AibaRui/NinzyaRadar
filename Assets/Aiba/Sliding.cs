@@ -62,7 +62,7 @@ public class Sliding : MonoBehaviour
         //ctrl‚ğ‰Ÿ‚µ‚Ä‚¢‚éŠÔAƒJƒƒ‰‚Ì‚‚³‚ğ‰º‚°‚é
         if (Input.GetKeyDown(KeyCode.LeftControl) && _control._isGround)
         {
-            //_cameraTransposer.m_FollowOffset.y = 0.6f;
+            _cameraTransposer.m_FollowOffset.y = 0.3f;
             transform.localScale = new Vector3(1, 0.3f, 1);
             _control._isSquat = true;
         }
@@ -73,7 +73,7 @@ public class Sliding : MonoBehaviour
             _control._isSquat = false;
 
             transform.localScale = new Vector3(1, 1f, 1);
-            _cameraTransposer.m_FollowOffset.y = 1.5f;
+            _cameraTransposer.m_FollowOffset.y = 0.8f;
             _control._isSliding = false;
             if (!_okSliding)
             {
@@ -86,7 +86,7 @@ public class Sliding : MonoBehaviour
     {
         _control._isSquat = false;
         _control._isSliding = false;
-        _cameraTransposer.m_FollowOffset.y = 1.5f;
+        _cameraTransposer.m_FollowOffset.y = 0.8f;
         _okSliding = true;
     }
 
