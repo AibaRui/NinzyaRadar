@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField, Header("弾丸の速度")] float _forcepower;
     [SerializeField, Header("銃の連射速度")] float _firerate;
     [SerializeField, Header("EnemyのHP")] int _hp = 2;
+    [SerializeField, Header("Playerの攻撃のタグの名前")] string[] _playerAttackTagName = new string[2];
     float _timer;
     float _saveSpeed;
     NavMeshAgent _navMeshAgent = default;
@@ -79,7 +80,7 @@ public class EnemyController : MonoBehaviour
     }
     void hit()
     {
-        if (CompareTag("") || CompareTag(""))
+        if (CompareTag(_playerAttackTagName[0]) || CompareTag(_playerAttackTagName[1]))
         {
             _hp -= 1;
         }
