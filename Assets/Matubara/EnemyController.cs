@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
     Vector3 _raycastHitPosition;
     void Start()
     {
-        _navMeshAgent= GetComponent<NavMeshAgent>();
+        _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.SetDestination(_waypoints[0].position);
         _saveSpeed = _navMeshAgent.speed;
         _timer = _firerate;
@@ -36,7 +36,6 @@ public class EnemyController : MonoBehaviour
         if (Physics.Raycast(sightray, out RaycastHit hit, _maxDistance) && hit.collider.CompareTag("Player") || Physics.Raycast(sightray2, out hit, _maxDistance) && hit.collider.CompareTag("Player"))
         {
             _raycastHitPosition = hit.point;
-            // gameObject.transform.forward = hit.point - transform.position;
             sighting(true);
         }
         else
@@ -50,17 +49,15 @@ public class EnemyController : MonoBehaviour
 
     void sighting(bool b)
     {
-        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
-
         if (b)
         {
-            meshRenderer.material.color = Color.red;
+            Transform playerpos = GameObject.FindGameObjectWithTag("Player").transform;
+            transform.forward = playerpos.position - this.transform.position;
             _navMeshAgent.speed = 0;
             Shoot();
         }
         else
         {
-            meshRenderer.material.color = Color.black;
             _navMeshAgent.speed = _saveSpeed;
             if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             {
