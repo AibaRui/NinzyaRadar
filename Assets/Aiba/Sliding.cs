@@ -37,16 +37,16 @@ public class Sliding : MonoBehaviour
 
     void Update()
     {
-            SlidingGo();
+      //  SlidingGo();
     }
 
-    void SlidingGo()
+   public void SlidingGo()
     {
         float v = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            Debug.Log("1");
+           // Debug.Log("1");
             //移動しながらしゃがんだらスライディング（クールタイムあり）
             if (v > 0 && _okSliding)
             {
@@ -67,7 +67,7 @@ public class Sliding : MonoBehaviour
             _control._isSquat = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftControl)&& _control._isGround)
+        if (Input.GetKeyUp(KeyCode.LeftControl) && _control._isGround)
         {
             m_rb.velocity = Vector3.zero;
             _control._isSquat = false;
