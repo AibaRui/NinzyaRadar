@@ -5,7 +5,10 @@ using UnityEngine;
 public class PlayerHpControl : MonoBehaviour
 {
     [Header("体力")]
-    [Tooltip("体力")] [SerializeField] int _hp = 5;
+    [Tooltip("体力")] [SerializeField]  int _hp = 5;
+    private int _nowHp =0;
+
+    public int Hp() { return _nowHp; }
 
     [Header("敵の攻撃のタグの名前")]
     [Tooltip("敵の攻撃のタグの名前")][SerializeField] string _damageTagName = "";
@@ -14,12 +17,13 @@ public class PlayerHpControl : MonoBehaviour
     void Start()
     {
         _gm = GetComponent<GameManager>();
+        _nowHp = _hp;
     }
 
     /// <summary>回復する</summary>
     public void lifeUp(int num)
     {
-        _hp += num;
+        _nowHp += num;
     }
 
     /// <summary>ダメージ処理</summary>
@@ -28,8 +32,8 @@ public class PlayerHpControl : MonoBehaviour
     {
         if(other.gameObject.tag == _damageTagName)
         {
-            _hp--;
-            if(_hp<0)
+            _nowHp--;
+            if(_nowHp < 0)
             {
                 _gm.GameOver();
             }
