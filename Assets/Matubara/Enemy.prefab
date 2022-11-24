@@ -246,6 +246,9 @@ MonoBehaviour:
   _forcepower: 10
   _firerate: 0.5
   _hp: 2
+  _playerAttackTagName:
+  - 
+  - 
 --- !u!1 &3159837183547067162
 GameObject:
   m_ObjectHideFlags: 0

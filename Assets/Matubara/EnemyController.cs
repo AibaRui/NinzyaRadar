@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField, Header("弾丸の速度")] float _forcepower;
     [SerializeField, Header("銃の連射速度")] float _firerate;
     [SerializeField, Header("EnemyのHP")] int _hp = 2;
-    [SerializeField, Header("Playerの攻撃のタグの名前")] string[] _playerAttackTagName = new string[2];
+    [SerializeField, TagField, Header("Playerの攻撃のタグの名前(2つまで)")] string[] _playerAttackTagName = new string[2];
     float _timer;
     float _saveSpeed;
     NavMeshAgent _navMeshAgent = default;
