@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour
 
     P_Control _control;
 
-    Vector3 _airVelo;
+   public Vector3 _airVelo;
 
     /// <summary>キャラクターの Animator</summary>
     [SerializeField] Animator _anim;
@@ -50,21 +50,21 @@ public class PlayerMove : MonoBehaviour
         m_anim = GetComponent<Animator>();
 
         Physics.gravity = Physics.gravity * 2;
-       // _animKatana = _animKatana.GetComponent<Animator>();
+        // _animKatana = _animKatana.GetComponent<Animator>();
 
         //// m_aud = m_aud.GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        Dir();
-        Jump();
+        //Dir();
+        //Jump();
 
-        if (_control.playerAction == P_Control.PlayerAction.OnGround)
-        {
-            Move();
-            DownSpeed();
-        }
+        //if (_control.playerAction == P_Control.PlayerAction.OnGround)
+        //{
+        //    Move();
+        //    DownSpeed();
+        //}
 
 
     }
@@ -76,12 +76,12 @@ public class PlayerMove : MonoBehaviour
 
     private void LateUpdate()
     {
-        _animKatana.SetBool("Jump",!_control.IsGrounded());
+        _animKatana.SetBool("Jump", !_control.IsGrounded());
         _animSyuriken.SetBool("Jump", !_control.IsGrounded());
     }
 
 
-    void Dir()
+    public void Dir()
     {
         Vector3 dir = Camera.main.transform.forward;
         dir.y = 0;  // y 軸方向はゼロにして水平方向のベクトルにする
@@ -160,7 +160,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    void MoveAir(Vector3 velo)
+    public void MoveAir(Vector3 velo)
     {
         if (_control.playerAction == P_Control.PlayerAction.Air)
         {
@@ -169,7 +169,7 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-    void Jump()
+    public void Jump()
     {
         if (_control._isGround)
         {
@@ -187,7 +187,7 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-    void DownSpeed()
+    public void DownSpeed()
     {
         if (_control._isJump)
         {

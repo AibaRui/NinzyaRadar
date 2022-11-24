@@ -39,10 +39,10 @@ public class PlayerKatanaAttack : MonoBehaviour
 
     void Update()
     {
-            Attack();
+       // Attack();
     }
 
-    void Attack()
+   public void Attack()
     {
         //“‚ğ‘•”õ‚µ‚Ä‚¢‚é
         if (_katana.activeSelf)

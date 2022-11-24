@@ -27,14 +27,11 @@ public class PlayerSyurikenAttack : MonoBehaviour
 
     void Update()
     {
-        if (_syuriken.activeSelf)
-        {
-            Attack();
-        }
+           // Attack();
     }
 
 
-    void Attack()
+   public void Attack()
     {
         //Žè— Œ•‚ð‘•”õ‚µ‚Ä‚¢‚é
         if (_syuriken.activeSelf)

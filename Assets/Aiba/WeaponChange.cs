@@ -17,10 +17,10 @@ public class WeaponChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Chenge();
+        //Chenge();
     }
 
-    void Chenge()
+   public void Chenge()
     {
         float wh = Input.GetAxis("Mouse ScrollWheel");
         if (wh != 0)

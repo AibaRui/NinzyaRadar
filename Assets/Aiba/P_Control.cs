@@ -7,8 +7,8 @@ public class P_Control : MonoBehaviour
 {
 
     [SerializeField] Animator _animKatana;
+    [SerializeField] Animator _animSyuriken;
 
-    public PlayerAction playerAction = PlayerAction.OnGround;
 
     [Header("接地判定の際、中心 (Pivot) からどれくらいの距離を「接地している」と判定するかの長さ")]
     [Tooltip("接地判定の際、中心 (Pivot) からどれくらいの距離を「接地している」と判定するかの長さ")]
@@ -30,36 +30,88 @@ public class P_Control : MonoBehaviour
     [Header("重力")]
     [Tooltip("重力")] [SerializeField] float _gravity = 3;
 
-    public bool _isWapon = false;
+    public PlayerAction playerAction = PlayerAction.OnGround;
 
+    /// <summary>ゲーム中か否か</summary>
+    bool _isStartGame = false;
 
     public bool _isSliding;
-
-    public bool _isAvirity = false;
-
     public bool _isSquat;
     public bool _isGround;
     public bool _isJump;
+
 
     private float _limitSpeedX;
     private float _limitSpeedZ;
 
 
+    [SerializeField] PlayerMove _playerMove;
+    [SerializeField] PlayerKatanaAttack _playerKatanaAttack;
+    [SerializeField] PlayerSyurikenAttack _playerSyurikenAttack;
+    [SerializeField] Sliding _sliding;
+    [SerializeField] WeaponChange _weaponChange;
+    [SerializeField] PlayerHideAvirity _hideAvirity;
+    [SerializeField] PlayerDecoiAvirity _decoiAvirity;
+
     Rigidbody m_rb;
     void Start()
     {
+        _playerMove = GetComponent<PlayerMove>();
+        _playerKatanaAttack = _playerKatanaAttack.GetComponent<PlayerKatanaAttack>();
+        _playerSyurikenAttack = _playerSyurikenAttack.GetComponent<PlayerSyurikenAttack>();
+        _sliding = GetComponent<Sliding>();
+        _weaponChange = _weaponChange.GetComponent<WeaponChange>();
         _animKatana = _animKatana.GetComponent<Animator>();
+        _animSyuriken = _animSyuriken.GetComponent<Animator>();
+        _hideAvirity = _hideAvirity.GetComponent<PlayerHideAvirity>();
+        _decoiAvirity = _decoiAvirity.GetComponent<PlayerDecoiAvirity>();
         m_rb = GetComponent<Rigidbody>();
     }
 
 
     void Update()
     {
-        Check();
-        SpeedLimit();
+        if (_isStartGame)
+        {
+            if (!_hideAvirity._isHide)
+            {
+                //PlayerMoveの処理
+                _playerMove.Dir();
+                _playerMove.Jump();
+                if (playerAction == PlayerAction.OnGround)
+                {
+                    _playerMove.Move();
+                    _playerMove.DownSpeed();
+                }
 
-        _isGround = IsGrounded();
+                //Slidingの処理
+                _sliding.SlidingGo();
+
+                //攻撃処理
+                _weaponChange.Chenge();
+                _playerKatanaAttack.Attack();
+                _playerSyurikenAttack.Attack();
+
+                Check();
+                SpeedLimit();
+                _isGround = IsGrounded();
+
+                _decoiAvirity.CoolTimeDecoiAvirity();
+                _decoiAvirity.Decoi();
+            }
+            _hideAvirity.Hide();
+        }
     }
+
+    private void FixedUpdate()
+    {
+        if (_isStartGame)
+        {
+            //PlayerMoveの処理
+            _playerMove.MoveAir(_playerMove._airVelo);
+        }
+    }
+
 
     private void LateUpdate()
     {
@@ -103,17 +155,7 @@ public class P_Control : MonoBehaviour
             return;
         }
 
-        //if (_isJump)
-        //{
-        //    playerAction = PlayerAction.JumpAir;
-
-        //    _limitSpeedX = _jumpMove;
-        //    _limitSpeedZ = _jumpMove;
-        //    return;
-        //}
-
-
-        if (_isGround)
+        if (IsGrounded())
         {
             playerAction = PlayerAction.OnGround;
             _limitSpeedX = _groundMove;
@@ -121,7 +163,7 @@ public class P_Control : MonoBehaviour
             return;
         }
 
-        if (!_isGround)
+        if (!IsGrounded())
         {
             playerAction = PlayerAction.Air;
 
@@ -129,9 +171,6 @@ public class P_Control : MonoBehaviour
             _limitSpeedZ = _airMove;
             return;
         }
-
-
-
     }
 
     /// <summary>設置判定</summary>
@@ -151,12 +190,23 @@ public class P_Control : MonoBehaviour
     public enum PlayerAction
     {
         OnGround,
-        JumpAir,
         Air,
         Sliding,
         WallRun,
         Slow,
-        Avirity,
         Climb,
     }
+
+    public void OnStart()
+    {
+        _isStartGame = true;
+    }
+
+    public void OnEndGame()
+    {
+        _isStartGame = false;
+        _animKatana.speed = 0;
+        _animSyuriken.speed = 0;
+    }
+
 }
