@@ -5241,6 +5241,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameSceneUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4443980510861190643, guid: d0fd740d45ce78b44b59288958656c21, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4443980510861190653, guid: d0fd740d45ce78b44b59288958656c21, type: 3}
       propertyPath: m_Pivot.x
       value: 0
