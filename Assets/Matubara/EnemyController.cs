@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField, Header("弾丸の速度")] float _forcepower;
     [SerializeField, Header("銃の連射速度")] float _firerate;
     [SerializeField, Header("EnemyのHP")] int _hp = 2;
+    [SerializeField, TagField, Header("Playerの攻撃のタグの名前(2つまで)")] string[] _playerAttackTagName = new string[2];
     float _timer;
     float _saveSpeed;
     NavMeshAgent _navMeshAgent = default;
@@ -21,7 +23,7 @@ public class EnemyController : MonoBehaviour
     Vector3 _raycastHitPosition;
     void Start()
     {
-        _navMeshAgent= GetComponent<NavMeshAgent>();
+        _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.SetDestination(_waypoints[0].position);
         _saveSpeed = _navMeshAgent.speed;
         _timer = _firerate;
@@ -36,7 +38,6 @@ public class EnemyController : MonoBehaviour
         if (Physics.Raycast(sightray, out RaycastHit hit, _maxDistance) && hit.collider.CompareTag("Player") || Physics.Raycast(sightray2, out hit, _maxDistance) && hit.collider.CompareTag("Player"))
         {
             _raycastHitPosition = hit.point;
-            // gameObject.transform.forward = hit.point - transform.position;
             sighting(true);
         }
         else
@@ -50,17 +51,15 @@ public class EnemyController : MonoBehaviour
 
     void sighting(bool b)
     {
-        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
-
         if (b)
         {
-            meshRenderer.material.color = Color.red;
+            Transform playerpos = GameObject.FindGameObjectWithTag("Player").transform;
+            transform.forward = playerpos.position - this.transform.position;
             _navMeshAgent.speed = 0;
             Shoot();
         }
         else
         {
-            meshRenderer.material.color = Color.black;
             _navMeshAgent.speed = _saveSpeed;
             if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             {
@@ -82,7 +81,7 @@ public class EnemyController : MonoBehaviour
     }
     void hit()
     {
-        if (CompareTag("") || CompareTag(""))
+        if (CompareTag(_playerAttackTagName[0]) || CompareTag(_playerAttackTagName[1]))
         {
             _hp -= 1;
         }
