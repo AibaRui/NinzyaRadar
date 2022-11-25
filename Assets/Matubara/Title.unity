@@ -827,7 +827,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &646616489
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1926,7 +1926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2967342749e914ebedb516ebbc864e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bgmAudioClip: {fileID: 0}
+  _bgmAudioClip: {fileID: 8300000, guid: 0e168eab7a4b087468c8c2fcd0a80ae2, type: 3}
   _playOnAwake: 1
   _isLoop: 1
   _seAudioClips: []
