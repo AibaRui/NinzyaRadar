@@ -28,39 +28,54 @@ public class PlayerKatanaAttack : MonoBehaviour
 
     [SerializeField] Animator _animKatana;
 
+    [SerializeField] List<AudioClip> audioClips = new List<AudioClip>();
+
+    [SerializeField] AudioSource _aud;
+
+    public bool _isAttack = true;
+
     Rigidbody m_rb;
     void Start()
     {
         m_rb = GetComponent<Rigidbody>();
         _control = FindObjectOfType<P_Control>();
         _animKatana = _animKatana.GetComponent<Animator>();
-
+        _aud = _aud.GetComponent<AudioSource>();
     }
 
     void Update()
     {
-       // Attack();
+        // Attack();
     }
 
-   public void Attack()
+    public void Attack()
     {
         //“‚ğ‘•”õ‚µ‚Ä‚¢‚é
         if (_katana.activeSelf)
         {
-            if (Input.GetMouseButton(0))
+            var r = Random.Range(0, audioClips.Count);
+            if (Input.GetMouseButtonDown(0) && _isAttack)
             {
+                _isAttack = false;
                 if (count < _maxCount)
                 {
+
+                    Debug.Log(count);
                     if (count == 0)
                     {
                         _animKatana.Play("katanaAttack");
+
                     }
                     else
                     {
                         _animKatana.SetTrigger("Attack");
+                        // _aud.PlayOneShot(audioClips[r]);
                     }
                 }
+                    _aud.PlayOneShot(audioClips[r]);
             }
+
+
         }
     }
 

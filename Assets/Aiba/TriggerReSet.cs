@@ -13,5 +13,6 @@ public class TriggerReSet : StateMachineBehaviour
 
         playerKatanaAttack = GameObject.FindObjectOfType<PlayerKatanaAttack>();
         playerKatanaAttack.Count++;
+        playerKatanaAttack._isAttack = true;
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerDecoiAvirity : MonoBehaviour
 {
     [SerializeField] GameObject _decoi;
@@ -26,8 +26,16 @@ public class PlayerDecoiAvirity : MonoBehaviour
     [SerializeField] float _coolTime = 5;
     private float _countTime = 0;
 
+    [SerializeField] AudioSource _aud;
     bool _isCoolDown;
 
+    [SerializeField] Text _ctText;
+    [SerializeField] GameObject _panel;
+
+    private void Start()
+    {
+                    _aud = _aud.GetComponent<AudioSource>();
+    }
 
     public void Decoi()
     {
@@ -37,10 +45,13 @@ public class PlayerDecoiAvirity : MonoBehaviour
             {
                 return;
             }
+            _aud.Play();
             _isCoolDown = true;
             var go = Instantiate(_decoi);
             go.transform.position = transform.position+transform.forward*1.5f;
             go.transform.forward = transform.forward;
+            _countTime = _coolTime;
+            _panel.SetActive(true);
         }
     }
 
@@ -48,12 +59,15 @@ public class PlayerDecoiAvirity : MonoBehaviour
     {
         if (_isCoolDown)
         {
-            _countTime += Time.deltaTime;
 
-            if (_countTime >= _coolTime)
+            _countTime -= Time.deltaTime;
+            _ctText.text = _countTime.ToString("0");
+
+            if (_countTime <=0)
             {
                 _isCoolDown = false;
-                _countTime = 0;
+                _ctText.text = "Q";
+                _panel.SetActive(false);
             }
         }
     }

@@ -12,8 +12,6 @@ public class PlayerMove : MonoBehaviour
     [Header("空中でAddする速度")]
     [Tooltip("空中でAddする速度")] [SerializeField] float _airMoveSpeed = 1f;
 
-    [Header("Jump空中でAddする速度")]
-    [Tooltip("Jump空中でAddする速度")] [SerializeField] float _swingAirMoveSpeed = 1f;
 
     [Header("しゃがみの移動速度")]
     [Tooltip("しゃがみの移動速度")] [SerializeField] float _squatMoeSpeed = 4;
