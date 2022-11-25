@@ -27,9 +27,6 @@ public class P_Control : MonoBehaviour
     [Header("ジャンプ時の速度制限")]
     [Tooltip("ジャンプ時の速度制限")] [SerializeField] float _jumpMove;
 
-    [Header("重力")]
-    [Tooltip("重力")] [SerializeField] float _gravity = 3;
-
     public PlayerAction playerAction = PlayerAction.OnGround;
 
     /// <summary>ゲーム中か否か</summary>

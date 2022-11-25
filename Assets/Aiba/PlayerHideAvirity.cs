@@ -23,6 +23,8 @@ public class PlayerHideAvirity : MonoBehaviour
 
     [SerializeField] GameObject _playerBody;
 
+    [SerializeField] AudioSource _aud;
+
     /// <summary>変わり身のインスタンス</summary>
     GameObject _go;
 
@@ -36,6 +38,7 @@ public class PlayerHideAvirity : MonoBehaviour
     {
         _hideCamera = _hideCamera.GetComponent<CinemachineVirtualCamera>();
         _rb = GetComponent<Rigidbody>();
+        _aud = _aud.GetComponent<AudioSource>();
     }
 
     private bool CheckWall()
@@ -53,6 +56,7 @@ public class PlayerHideAvirity : MonoBehaviour
             {
                 if (CheckWall())
                 {
+                    _aud.Play();
                     _isHide = true;
                     _pos = transform.position;
                     _rb.isKinematic = true;

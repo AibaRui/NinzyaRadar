@@ -16,12 +16,17 @@ public class PlayerSyurikenAttack : MonoBehaviour
     P_Control _control;
 
     [SerializeField] Animator _animSyuriken;
+
+    [SerializeField] AudioSource _aud;
+
+
     Rigidbody m_rb;
     void Start()
     {
         m_rb = GetComponent<Rigidbody>();
         _control = FindObjectOfType<P_Control>();
         _animSyuriken = _animSyuriken.GetComponent<Animator>();
+        _aud = _aud.GetComponent<AudioSource>();
     }
 
 
@@ -46,6 +51,7 @@ public class PlayerSyurikenAttack : MonoBehaviour
                 _isAttack = false;
                 _animSyuriken.Play("SyurikenAttack");
                 StartCoroutine(CoolTime());
+                _aud.Play();
             }
 
         }
