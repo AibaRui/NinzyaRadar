@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7099714898662984636}
   - component: {fileID: 4170263154090893358}
   - component: {fileID: 516661878658199695}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,9 +112,9 @@ GameObject:
   - component: {fileID: 4232502624683549927}
   - component: {fileID: 7699985778777160061}
   - component: {fileID: 7166895193697070457}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerDecoi
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 8780640659992411927}
   - component: {fileID: 1429928217043586598}
   - component: {fileID: 476144277568161585}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,6 +344,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: decoi
       objectReference: {fileID: 0}
+    - target: {fileID: 3361040026110512802, guid: 93d23694ec0d8a942aab6ade5f530ded, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3361040026110512805, guid: 93d23694ec0d8a942aab6ade5f530ded, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -388,10 +392,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3361040026734638890, guid: 93d23694ec0d8a942aab6ade5f530ded, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3361040026734638895, guid: 93d23694ec0d8a942aab6ade5f530ded, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 792f65f1880e7a141adaf4867b822c1f, type: 2}
+    - target: {fileID: 3361040027592892153, guid: 93d23694ec0d8a942aab6ade5f530ded, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3361040027592892154, guid: 93d23694ec0d8a942aab6ade5f530ded, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

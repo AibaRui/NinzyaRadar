@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - KatanaAttack
+  - PlayerDecoi
+  - Syuriken
+  - Goal
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX

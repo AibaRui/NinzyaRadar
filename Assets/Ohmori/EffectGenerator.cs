@@ -10,8 +10,12 @@ public class EffectGenerator : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("‚Ô‚Â‚©‚Á‚½");
-        GameObject _tempObj = Instantiate(_effect);
-        _tempObj.transform.position = other.transform.position;
-        _tempObj.transform.LookAt(this.transform.position);
+        if (other.gameObject.tag == "Enemy")
+        {
+            GameObject _tempObj = Instantiate(_effect);
+            _tempObj.transform.position = other.transform.position;
+            _tempObj.transform.LookAt(this.transform.position);
+        }
+
     }
 }
