@@ -632,6 +632,7 @@ GameObject:
   - component: {fileID: 8399347712796652404}
   - component: {fileID: 3637607256227447834}
   - component: {fileID: -8700940917676766998}
+  - component: {fileID: 1280687995838082169}
   m_Layer: 0
   m_Name: syurikenPrefab
   m_TagString: Untagged
@@ -700,6 +701,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coolTime: 3
+--- !u!114 &1280687995838082169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5599534349531014566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eaa329f0583b6842be0e500fa43660d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effect: {fileID: 364315886555050479, guid: 9cafa11e5b06ab54ba4172bb7c75992c, type: 3}
 --- !u!1 &6345562793226892435
 GameObject:
   m_ObjectHideFlags: 0
