@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 472059f6ac5aebb4c83981c77b9aa5cd, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -182,7 +182,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ae48b68bd9636234a80b18854b5c371d, type: 3}
+    m_Font: {fileID: 12800000, guid: 7ea9033de9158e342b7ee4dc340d00b6, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -356,7 +356,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ae48b68bd9636234a80b18854b5c371d, type: 3}
+    m_Font: {fileID: 12800000, guid: 7ea9033de9158e342b7ee4dc340d00b6, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -827,7 +827,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &646616489
 RectTransform:
   m_ObjectHideFlags: 0
@@ -981,7 +981,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: GameScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &775187641
@@ -1234,7 +1234,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ae48b68bd9636234a80b18854b5c371d, type: 3}
+    m_Font: {fileID: 12800000, guid: 7ea9033de9158e342b7ee4dc340d00b6, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -1926,9 +1926,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2967342749e914ebedb516ebbc864e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bgmAudioClip: {fileID: 0}
+  _bgmAudioClip: {fileID: 8300000, guid: 0e168eab7a4b087468c8c2fcd0a80ae2, type: 3}
   _playOnAwake: 1
   _isLoop: 1
+  _bgmVolume: 1
   _seAudioClips: []
   _seLifeTime: 300
 --- !u!1 &1704271604
@@ -2555,7 +2556,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ae48b68bd9636234a80b18854b5c371d, type: 3}
+    m_Font: {fileID: 12800000, guid: 7ea9033de9158e342b7ee4dc340d00b6, type: 3}
     m_FontSize: 54
     m_FontStyle: 2
     m_BestFit: 0

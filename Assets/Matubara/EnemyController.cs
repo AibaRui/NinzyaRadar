@@ -79,20 +79,17 @@ public class EnemyController : MonoBehaviour
             _timer = 0;
         }
     }
-    void hit()
-    {
-        if (CompareTag(_playerAttackTagName[0]) || CompareTag(_playerAttackTagName[1]))
-        {
-            _hp -= 1;
-        }
 
-        if (_hp <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
     private void OnTriggerEnter(Collider other)
     {
-        hit();
+        if (other.gameObject.tag == _playerAttackTagName[0] || other.gameObject.tag == _playerAttackTagName[1])
+        {
+            _hp -= 1;
+            Debug.Log(_hp);
+            if (_hp <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

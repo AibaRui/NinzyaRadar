@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [Header("GameOverŽž‚ÉŒÄ‚Ño‚·ˆ—")]
     [Tooltip("GameOverŽž‚ÉŒÄ‚Ño‚·ˆ—")] [SerializeField] UnityEvent _onGameOver;
 
+
     bool _isStart = false;
 
     [SerializeField] StartSituation _startSituation = StartSituation.WaitSecound3;
@@ -100,12 +101,14 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        Cursor.visible = true;
         _enemies.ForEach(enemy => enemy.gameObject.SetActive(false));
         _onGameOver.Invoke();
     }
 
     public void GameClear()
     {
+        Cursor.visible = true;
         _enemies.ForEach(enemy => enemy.gameObject.SetActive(false));
         _onGameClear.Invoke();
     }

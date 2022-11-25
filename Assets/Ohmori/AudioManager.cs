@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
     bool _playOnAwake = true;
     [Tooltip("BGMÇÃLoop"), SerializeField]
     bool _isLoop = true;
+    [Tooltip("BGMÇÃÉ{ÉäÉÖÅ[ÉÄ"), SerializeField, Range(0f, 1f)]
+    float _bgmVolume = 1f;
 
     [Header("SE")]
     [Tooltip("SEópÇÃAudioClip"), SerializeField]
@@ -30,6 +32,7 @@ public class AudioManager : MonoBehaviour
             _bgmAudioSource = this.AddComponent<AudioSource>();
             _bgmAudioSource.loop = _isLoop;
             _bgmAudioSource.clip = _bgmAudioClip;
+            _bgmAudioSource.volume = _bgmVolume;
 
             if (_playOnAwake)
             {
@@ -55,6 +58,7 @@ public class AudioManager : MonoBehaviour
             _bgmAudioSource = this.AddComponent<AudioSource>();
             _bgmAudioSource.loop = _isLoop;
             _bgmAudioSource.clip = audioClip;
+            _bgmAudioSource.volume = _bgmVolume;
             _bgmAudioSource.Play();
         }
     }

@@ -38,10 +38,12 @@ public class MouseSencivity : MonoBehaviour
 
             if(_isPause)
             {
+                Cursor.visible = true;
                 Time.timeScale = 0;
             }
             else
             {
+                Cursor.visible = false;
                 Time.timeScale = 1;
             }
         }

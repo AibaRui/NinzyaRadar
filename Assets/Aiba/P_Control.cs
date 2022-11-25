@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class P_Control : MonoBehaviour
 {
+    [SerializeField] GameManager _gm;
 
     [SerializeField] Animator _animKatana;
     [SerializeField] Animator _animSyuriken;
@@ -53,6 +54,7 @@ public class P_Control : MonoBehaviour
     Rigidbody m_rb;
     void Start()
     {
+        _gm = _gm.GetComponent<GameManager>();
         _playerMove = GetComponent<PlayerMove>();
         _playerKatanaAttack = _playerKatanaAttack.GetComponent<PlayerKatanaAttack>();
         _playerSyurikenAttack = _playerSyurikenAttack.GetComponent<PlayerSyurikenAttack>();
@@ -204,6 +206,14 @@ public class P_Control : MonoBehaviour
         _isStartGame = false;
         _animKatana.speed = 0;
         _animSyuriken.speed = 0;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag=="Goal")
+        {
+            _gm.GameClear();
+        }
     }
 
 }

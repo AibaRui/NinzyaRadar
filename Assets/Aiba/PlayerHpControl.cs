@@ -5,20 +5,23 @@ using UnityEngine;
 public class PlayerHpControl : MonoBehaviour
 {
     [Header("‘Ì—Í")]
-    [Tooltip("‘Ì—Í")] [SerializeField]  int _hp = 5;
-    private int _nowHp =0;
+    [Tooltip("‘Ì—Í")] [SerializeField] int _hp = 5;
+    private int _nowHp = 0;
 
     public int Hp() { return _nowHp; }
 
     [Header("“G‚ÌUŒ‚‚Ìƒ^ƒO‚Ì–¼‘O")]
-    [Tooltip("“G‚ÌUŒ‚‚Ìƒ^ƒO‚Ì–¼‘O")][SerializeField] string _damageTagName = "";
+    [Tooltip("“G‚ÌUŒ‚‚Ìƒ^ƒO‚Ì–¼‘O")] [SerializeField] string _damageTagName = "";
 
     [SerializeField] GameManager _gm;
-    void Start()
+
+    private void Awake()
     {
-        _gm = GetComponent<GameManager>();
+        _gm = _gm.GetComponent<GameManager>();
         _nowHp = _hp;
     }
+
+
 
     /// <summary>‰ñ•œ‚·‚é</summary>
     public void lifeUp(int num)
@@ -30,10 +33,10 @@ public class PlayerHpControl : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == _damageTagName)
+        if (other.gameObject.tag == _damageTagName)
         {
             _nowHp--;
-            if(_nowHp < 0)
+            if (_nowHp < 0)
             {
                 _gm.GameOver();
             }
