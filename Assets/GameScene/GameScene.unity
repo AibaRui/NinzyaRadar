@@ -4893,7 +4893,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-172012
+  m_Name: pb_Mesh154642
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -32840,12 +32840,16 @@ PrefabInstance:
       objectReference: {fileID: 329308832}
     - target: {fileID: 1155613317294544545, guid: 13e24ece447f22e479c6ec2ce40c1daf, type: 3}
       propertyPath: _jumpPower
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1155613317294544545, guid: 13e24ece447f22e479c6ec2ce40c1daf, type: 3}
       propertyPath: _animKatana
       value: 
       objectReference: {fileID: 329308832}
+    - target: {fileID: 1155613317294544545, guid: 13e24ece447f22e479c6ec2ce40c1daf, type: 3}
+      propertyPath: _movingSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1155613317294544545, guid: 13e24ece447f22e479c6ec2ce40c1daf, type: 3}
       propertyPath: _animSyuriken
       value: 
